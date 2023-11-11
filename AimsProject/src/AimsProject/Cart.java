@@ -57,6 +57,7 @@ public class Cart {
 				for (int i=qtyOrdered; i< MAX_NUMBERS_ORDERED; i++) {
 					if(dvdList[i].getTitle() != null) {
 						addDigitalVideoDisc(dvdList[i]);
+						qtyOrdered++;
 					} else {
 						// In ra thông báo khi đĩa đã được thêm vào giỏ hàng
 						System.out.println("Added successfully!");
