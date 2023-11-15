@@ -4,6 +4,6 @@
 /**
  * 
  */
-module Lab01 {
+module OtherProjects {
 	requires java.desktop;
 }

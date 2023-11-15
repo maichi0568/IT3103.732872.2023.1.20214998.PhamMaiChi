@@ -4,6 +4,6 @@
 /**
  * 
  */
-module AimsProject {
+module OtherProjects {
 	requires java.desktop;
 }
