@@ -28,8 +28,14 @@ public class DigitalVideoDisc {
 	// Pham Mai Chi 20214998
 	// Create Constructor method
 	// Create a DVD object by title
+	
+	
 	public DigitalVideoDisc(String title) {
 		super();
+		this.title = title;
+	}
+	
+	public void setTitle(String title) {
 		this.title = title;
 	}
 	// Create a DVD object by category, title and cost

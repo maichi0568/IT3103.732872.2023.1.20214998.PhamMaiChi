@@ -49,20 +49,17 @@ public class Cart {
 	}
 	
 	public void addDigitalVideoDisc(DigitalVideoDisc [] dvdList){
-		if (qtyOrdered == MAX_NUMBERS_ORDERED) {
-			// In ra thông báo khi giỏ hàng đầy
-			System.out.println("Pham Mai Chi 20214998The cart is almost full!");
-		} else {
-			if (qtyOrdered < MAX_NUMBERS_ORDERED) {
-				for (int i=qtyOrdered; i< MAX_NUMBERS_ORDERED; i++) {
-					if(dvdList[i].getTitle() != null) {
-						addDigitalVideoDisc(dvdList[i]);
-						qtyOrdered++;
-					} else {
-						// In ra thông báo khi đĩa đã được thêm vào giỏ hàng
-						System.out.println("Added successfully!");
-					}
-				}
+		for (int i=0;i<=MAX_NUMBERS_ORDERED;i++){
+			if (dvdList[i].getTitle() != null) {
+				addDigitalVideoDisc(dvdList[i]);
+			}
+			else if (this.qtyOrdered ==MAX_NUMBERS_ORDERED) {
+				System.out.println("Cart is full");
+				break;
+			}
+			else {
+				System.out.println("Add all successfully");
+				break;
 			}
 		}
 	}
