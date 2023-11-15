@@ -1,1 +1,1 @@
-package AimsProject;
+package hust.soict.dsai.aims;
