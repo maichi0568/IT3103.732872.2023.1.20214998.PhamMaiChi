@@ -95,8 +95,13 @@ public class DigitalVideoDisc {
 		this.id=nbDigitalVideoDiscs;
 	}
 	
-	public boolean isMatch(String title_find) {
+	public boolean isMatchByTitle(String title_find) {
 		if (title_find.equals(this.title)) return true;
+		else return false;
+	}
+	
+	public boolean isMatchByID(int id) {
+		if (id==this.id) return true;
 		else return false;
 	}
 	

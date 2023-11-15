@@ -81,7 +81,17 @@ public class Cart {
 	
 	public void searchTitle(String title) {
 		for (int i=0; i<this.qtyOrdered; i++) {
-			if (this.itemsOrderes[i].isMatch(title)) {
+			if (this.itemsOrderes[i].isMatchByTitle(title)) {
+				System.out.println(this.itemsOrderes[i]);
+				return;
+			}
+		}
+		System.out.println("No match is found!");
+	}
+	
+	public void searchID(int id) {
+		for (int i=0; i<this.qtyOrdered; i++) {
+			if (this.itemsOrderes[i].isMatchByID(id)) {
 				System.out.println(this.itemsOrderes[i]);
 				return;
 			}

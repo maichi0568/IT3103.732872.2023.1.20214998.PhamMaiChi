@@ -19,5 +19,6 @@ public class CartTest {
 		// Test the print method
 		cart.print();
 		cart.searchTitle("The Lion King12345");
+		cart.searchID(1);
 	}
 }
