@@ -68,4 +68,24 @@ public class Cart {
 		addDigitalVideoDisc(dvd1);
 		addDigitalVideoDisc(dvd2);
 	}
+	
+	public void print() {
+		System.out.println("***********************CART***********************");
+		for (int i=0; i< this.qtyOrdered; i++) {
+			System.out.println((i+1) + ". DVD - " + itemsOrderes[i].getTitle() +" - " + itemsOrderes[i].getCategory() 
+					+" - " + itemsOrderes[i].getDirector() + " - " + itemsOrderes[i].getLength() 
+					+ ": " + itemsOrderes[i].getCost() + " $");
+		}
+		System.out.println("Total cost: " + Cart.this.totalCost()+"\n***************************************************");
+	}
+	
+	public void searchTitle(String title) {
+		for (int i=0; i<this.qtyOrdered; i++) {
+			if (this.itemsOrderes[i].isMatch(title)) {
+				System.out.println(this.itemsOrderes[i]);
+				return;
+			}
+		}
+		System.out.println("No match is found!");
+	}
 }
