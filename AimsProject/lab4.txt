@@ -1,0 +1,47 @@
+9. Track tập hợp lại thành CompactDisc.
+10. Nếu đối tượng được truyền vào không phải là một đối tượng của lớp Media, hàm "equals" sẽ trả về giá trị false.
+11. Trong đoạn mã này, một ArrayList có tên mediae được tạo để lưu trữ các đối tượng thuộc kiểu Media.
+Tiếp theo, các đối tượng được tạo và thêm vào mediae.
+Sau đó, một vòng lặp for-each được sử dụng để lặp qua mỗi phần tử trong ArrayList mediae. Biến vòng lặp element đại diện cho mỗi đối tượng trong ArrayList trong mỗi lần lặp.
+Trong vòng lặp, element.toString() được gọi để chuyển đổi đối tượng hiện tại element thành chuỗi biểu diễn của nó. Chuỗi biểu diễn này sau đó được in ra bằng cách sử dụng System.out.println() để hiển thị trên console.
+12. Lớp cần triển khai giao diện Comparable là Media.
+Ví dụ, nếu chúng ta triển khai sắp xếp theo tiêu đề sau đó theo giá:
+public int compareTo(Media other) {
+    int titleComparison = this.getTitle().compareTo(other.getTitle());
+    
+    if (titleComparison == 0) {
+        // If titles are the same, compare by cost in descending order
+        return Double.compare(other.getCost(), this.getCost());
+    }
+    return titleComparison;
+}
+Khi sử dụng phương pháp triển khai giao diện Comparable, chúng ta chỉ có thể có một cách sắp xếp tự nhiên cho các mục trong lớp đó. Trong trường hợp này, có thể sắp xếp theo tiêu đề và sau đó theo giá, hoặc theo giá và sau đó theo tiêu đề. Chúng ta không thể có cả hai quy tắc sắp xếp đồng thời.
+public class Dvd extends Media {
+    // Constructor and other properties/methods specific to DVDs
+    
+    @Override
+    public int compareTo(Media other) {
+        if (other instanceof Dvd) {
+            Dvd otherDvd = (Dvd) other;
+            
+            int titleComparison = this.getTitle().compareTo(otherDvd.getTitle());
+            
+            if (titleComparison == 0) {
+                // If titles are the same, compare by decreasing length
+                int lengthComparison = Integer.compare(otherDvd.getLength(), this.getLength());
+                
+                if (lengthComparison == 0) {
+                    // If lengths are the same, compare by cost
+                    return Double.compare(this.getCost(), otherDvd.getCost());
+                }
+                
+                return lengthComparison;
+            }
+         
+            return titleComparison;
+        }
+        
+        // If the other object is not a DVD, use the default comparison in the Media class
+        return super.compareTo(other);
+    }
+}
