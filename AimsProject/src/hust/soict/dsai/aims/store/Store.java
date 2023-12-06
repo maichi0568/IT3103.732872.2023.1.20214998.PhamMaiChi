@@ -1,36 +1,34 @@
 package hust.soict.dsai.aims.store;
-
-import hust.soict.dsai.aims.disc.DigitalVideoDisc;
-
+import java.util.*;
+import hust.soict.dsai.aims.media.DigitalVideoDisc;
+import hust.soict.dsai.aims.media.Media;
 public class Store {
-	private int MAX_DISC=1000;
-	private DigitalVideoDisc itemsOrdered[] = new DigitalVideoDisc[MAX_DISC];
-	private int  qtyOrdered =0;
+		private int MAX_DISC=1000;
+	    private ArrayList<Media> itemsInStore = new ArrayList<Media>();
 
-	public void addDVD(DigitalVideoDisc dvd1) {
-		int i =0;
-		while (this.itemsOrdered[i] != null) {
-			i++;
-			if (i>=MAX_DISC) {
-				System.out.println("Store is full");
-				return;
-		}
-		}
-		this.itemsOrdered[i] = dvd1;
-		System.out.println("Add successfully");
+	   
+
+		// Pham Mai Chi 20214998
+	    public void addMedia(Media media) {
+	        if (itemsInStore.contains(media)) {
+	            System.out.println("Already has this media");
+	        } else {
+	            itemsInStore.add(media);
+	            System.out.println("Media added successfully");
+	        }
+	    }
+
+	    public void removeMedia(Media media) {
+	        if (itemsInStore.contains(media)) {
+	            itemsInStore.remove(media);
+	            System.out.println("Media remove successfully");
+	        } else
+	            System.out.println("Media not found");
+	    
 	}
-	public void removeDVD(DigitalVideoDisc dvd1) {
-		int i =0;
-		while (this.itemsOrdered[i]!=dvd1) {
-			i++;
-			if (i>MAX_DISC) {break;}
+
+		public static Media[] getItemsInStore() {
+			// TODO Auto-generated method stub
+			return null;
 		}
-		if (i>MAX_DISC) {
-			System.out.println("Delete Unsuccessfully");
-		}
-		else {
-			this.itemsOrdered[i] = null;
-			System.out.println("Delete successfully");
-		}
-	}
 }
