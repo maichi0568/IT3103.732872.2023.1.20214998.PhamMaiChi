@@ -27,8 +27,8 @@ public class Store {
 	    
 	}
 
-		public static Media[] getItemsInStore() {
+		public ArrayList<Media> getItemsInStore() {
 			// TODO Auto-generated method stub
-			return null;
+			return itemsInStore;
 		}
 }

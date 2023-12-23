@@ -1,39 +1,60 @@
 package hust.soict.dsai.aims.media;
 
-public class Track implements Playable{
-	
+import java.io.IOException;
+
+public class Track implements Playable {
 	private String title;
 	private int length;
+	
+	/**
+	 * @return the title
+	 */
 	public String getTitle() {
 		return title;
 	}
-	// Pham Mai Chi 20214998
+
+	/**
+	 * @param title the title to set
+	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
+	/**
+	 * @return the length
+	 */
 	public int getLength() {
 		return length;
 	}
-	public void setLength(int length) {
-		this.length = length;
-	}
-	public Track(String title,int length) {
-		this.title = title;
-		this.length = length;
+
+	/**
+	 * @param length the length to set
+	 */
+	public void setLength(int length) throws IOException {
+		if (length >= 0){
+			this.length = length;
+		} else {
+			throw new IOException("Track's length must be greater or equal");
+		}
 	}
 	
-	public void play() {
-		System.out.println("Playing DVD: " + this.getTitle());
-		System.out.println("DVD length: " + this.getLength());
+	// Constructor method
+	public Track(String title, int length) throws IOException {
+		// Set length and title 
+		this.setLength(length);
+		this.setTitle(title);
 	}
-	// Pham Mai Chi 20214998
-	public boolean equals(Object o){
-        if (o instanceof Track){
-            Track that = (Track) o;
-            return this.title == that.title && this.length == that.length;
-        }
-        else{
-            return false;
-        }
-    }
+	
+	// implementing playable
+	public void play() {
+		System.out.println("Playing track: " + title);
+		System.out.println("Track length: " + length);
+	}
+	
+	// Override equal method for track
+	@Override
+	public boolean equals(Object o) {
+		Track track = (Track) o;
+		return (title == track.title) && (length == track.length);
+	}
 }

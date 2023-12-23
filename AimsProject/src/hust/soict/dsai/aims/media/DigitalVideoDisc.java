@@ -1,68 +1,57 @@
 package hust.soict.dsai.aims.media;
 
-public class DigitalVideoDisc extends Disc implements Playable{
-	// Pham Mai Chi 20214998
-	// Class member
-	private static int nbDigitalVideoDiscs = 0;
-	
-	// Pham Mai Chi 20214998
-	// Instance member
-	private String director;
-	private int length;
-	
-	// Pham Mai Chi 20214998
-	// Getter method
-	
-	public String getDirector() {
-		return director;
+import hust.soict.dsai.aims.exception.PlayerException;
+
+import java.io.IOException;
+
+public class DigitalVideoDisc extends Disc implements Playable {
+	// Construct method
+	public DigitalVideoDisc() throws IOException {
+		super(null, null, null, 0, 0);
 	}
-	public int getLength() {
-		return length;
+	
+	/**
+	 * Create DVD by title
+	 */
+	public DigitalVideoDisc(String title) throws IOException {
+		super(title, null, null, 0, 0);
+	}
+	
+	/**
+	 * Create DVD by category, title, cost
+	 */
+	public DigitalVideoDisc(String category, String title, float cost) throws IOException {
+		super(title, category, null, 0, cost);
 	}
 
-	public void setDirector(String director) {
-		this.director = director;
-	}
-	public void setLength(int length) {
-		this.length = length;
-	}
-
-	public static int getNbDigitalVideoDiscs() {
-		return nbDigitalVideoDiscs;
-	}
-	public static void setNbDigitalVideoDiscs(int nbDigitalVideoDiscs) {
-		DigitalVideoDisc.nbDigitalVideoDiscs = nbDigitalVideoDiscs;
-	}
-	// Pham Mai Chi 20214998
-	// Create Constructor method
-
-	// Create a DVD object by category, title and cost
-	public DigitalVideoDisc(String title) {
-		super(title);
-	}
-	public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
-		super(title,category,cost);
-	}
-	public DigitalVideoDisc(String title, String category, String director, float cost) {
-		super(title,category,cost);
+	/**
+	 * Create DVD by director, category, title and cost
+	 */
+	public DigitalVideoDisc(String director, String category, String title, float cost) throws IOException {
+		super(title, category, director, 0, cost);
 	}
 	
-	public boolean isMatchByTitle(String title_find) {
-		if (title_find.equals(getTitle())) return true;
-		else return false;
+	/**
+	 * Create DVD by all attributes: title, category, director, length and cost
+	 */
+	public DigitalVideoDisc(String title, String category, String director, int length, float cost) throws IOException {
+		super(title, category, director, length, cost);
 	}
 	
-	public boolean isMatchByID(int id) {
-		if (id==getId()) return true;
-		else return false;
-	}
-	
+	// Method to print out DVD format
+	@Override
 	public String toString() {
-		return getId() + ". DVD - " + getTitle() + " - " + getCategory() + " - " + this.director + " - " + this.length + ": " + getCost() + " $";
+		return "DVD - " + this.getTitle() + " - " + this.getCategory() + " - " + this.getDirector() + " - " + this.getLength() + ": "+ this.getCost() + "$";
 	}
 	
-	public void play() {
-		System.out.println("Playing DVD: " + this.getTitle());
-		System.out.println("DVD length: " + this.getLength());
+	// implementing playable
+	public void play() throws PlayerException {
+		// Check if track's length is greater than 0 or not
+		if (this.getLength() >= 0) {
+			System.out.println("Playing DVD: " + this.getTitle());
+			System.out.println("DVD length: " + this.getLength());
+		} else {
+			throw new PlayerException("ERROR: DVD length is non-positive!");
+		}
 	}
 }
